@@ -144,7 +144,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* Action Buttons */}
-      <div className="flex items-center justify-center gap-6 sm:gap-10 mt-2 mb-6 h-[7vh] w-full">
+      <div className="flex items-center justify-center gap-6 sm:gap-10 h-[7vh] w-full">
         <motion.div
           className="h-20 w-20 rounded-full bg-[#E74748] flex items-center justify-center shadow-lg cursor-pointer"
           whileTap={{ scale: 0.85 }}
