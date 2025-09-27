@@ -1,50 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapPin } from "lucide-react";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { motion, AnimatePresence } from "framer-motion";
 
-const users = [
-  {
-    name: "Mooa",
-    age: 22,
-    live: "Online",
-    hobby: "Spends weekends building mobile games 💻",
-    image:
-      "https://plus.unsplash.com/premium_photo-1670282393309-70fd7f8eb1ef?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Mikasa",
-    age: 19,
-    live: "DND",
-    hobby: "Meditates every morning to stay calm 🧘‍♂️",
-    image:
-      "https://images.unsplash.com/photo-1728443433557-3fc9e37b58c2?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Yeager",
-    age: 19,
-    live: "Offline",
-    hobby: "Loves skateboarding at the city park 🛹",
-    image:
-      "https://images.unsplash.com/photo-1624223237138-21a37e61dec0?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Dogesh Bhai",
-    age: 7,
-    live: "Online",
-    hobby: "Enjoys playing guitar under the stars 🎸",
-    image:
-      "https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?w=500&auto=format&fit=crop&q=60",
-  },
-];
-
 const Navbar = () => {
+  const [users, setUsers] = useState([]);
   const [userIndex, setUserIndex] = useState(0);
   const [action, setAction] = useState(null);
 
-  const user = users[userIndex];
+  // 🔹 Fetch Unsplash images
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch(
+          `https://api.unsplash.com/photos/random?count=8&client_id=YOUR_ACCESS_KEY`
+        );
+        const data = await res.json();
+
+        // 🔹 Map Unsplash images into user objects
+        const mappedUsers = data.map((img, idx) => ({
+          name: img.user.name || `User ${idx + 1}`,
+          age: Math.floor(Math.random() * 15) + 18, // random age 18-32
+          live: idx % 2 === 0 ? "Online" : "Offline",
+          hobby: img.alt_description
+            ? `Loves ${img.alt_description}`
+            : "Enjoys adventures 🌍",
+          image: img.urls.regular,
+        }));
+
+        setUsers(mappedUsers);
+      } catch (err) {
+        console.error("Error fetching Unsplash images:", err);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleHeartClick = () => {
     setAction("like");
@@ -61,6 +54,16 @@ const Navbar = () => {
       setAction(null);
     }, 500);
   };
+
+  if (users.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black text-white">
+        Loading profiles...
+      </div>
+    );
+  }
+
+  const user = users[userIndex];
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-900 to-black px-2 sm:px-4">

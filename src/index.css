@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@media (min-width: 850px) {
+    body {
+        display: none;
+    }
+
+    body::before {
+        content: "You can use this app on screens smaller than tablets (less than 768px).";
+        display: block;
+        background: #f9fafb;
+        color: #111827;
+        padding: 1rem;
+        text-align: center;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+}
