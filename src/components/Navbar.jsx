@@ -1,174 +1,188 @@
-import React, { useState } from "react";
-import { MapPin } from "lucide-react";
-import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa6";
-import { ImCross } from "react-icons/im";
-import { motion, AnimatePresence } from "framer-motion";
-
-const users = [
-  {
-    name: "Luna Olive",
-    age: 22,
-    live: "Online",
-    hobby: "Spends weekends chasing cockroaches ☠",
-    image:
-      "https://plus.unsplash.com/premium_photo-1670282393309-70fd7f8eb1ef?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Yeager doe",
-    age: 19,
-    live: "Offline",
-    hobby: "Loves skateboarding at the city park 🛹",
-    image:
-      "https://images.unsplash.com/photo-1624223237138-21a37e61dec0?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Lucas Nom",
-    age: 23,
-    live: "Offline",
-    hobby: "Loves playing guitar and singing 🎸",
-    image:
-      "https://plus.unsplash.com/premium_photo-1664015982598-283bcdc9cae8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWVufGVufDB8fDB8fHww",
-  },
-  {
-    name: "Kanae Oscorp",
-    age: 19,
-    live: "DND",
-    hobby: "Meditates every morning to stay calm 🧘‍♂️",
-    image:
-      "https://images.unsplash.com/photo-1728443433557-3fc9e37b58c2?w=500&auto=format&fit=crop&q=60",
-  },
-  {
-    name: "Alice Corps",
-    age: 26,
-    live: "Online",
-    hobby: "Loves hiking and outdoor adventures 🏞",
-    image:
-      "https://images.unsplash.com/photo-1560087637-bf797bc7796a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW58ZW58MHx8MHx8fDA%3D",
-  },
-  {
-    name: "Carnon Hopes",
-    age: "1500+",
-    live: "Online",
-    hobby: "loves to ride bicycle 🚴‍♀️",
-    image:
-      "https://images.unsplash.com/photo-1557977275-d261356f567f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFsZSUyMG1vZGVsfGVufDB8MXwwfHx8MA%3D%3D",
-  },
-  {
-    name: "Demontro Quala",
-    age: 41,
-    live: "Online",
-    hobby: "Speak more than 13 languages 🗣",
-    image:
-      "https://images.unsplash.com/photo-1679217125041-6f81624038d4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1hbGUlMjBtb2RlbHxlbnwwfDF8MHx8fDA%3D",
-  },
-  {
-    name: "Emma Johanson",
-    age: 37,
-    live: "Online",
-    hobby: "Loves doing creative stuff 🖍",
-    image:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZlbWFsZSUyMG1vZGVsfGVufDB8MXwwfHx8MA%3D%3D",
-  },
-];
-
-const Navbar = () => {
-  const [userIndex, setUserIndex] = useState(0);
-  const [action, setAction] = useState(null);
-
-  const user = users[userIndex];
-
-  const handleHeartClick = () => {
-    setAction("like");
-    setTimeout(() => {
-      setUserIndex((prev) => (prev + 1) % users.length);
-      setAction(null);
-    }, 500);
-  };
-
-  const handleCrossClick = () => {
-    setAction("dislike");
-    setTimeout(() => {
-      setUserIndex((prev) => (prev - 1 + users.length) % users.length);
-      setAction(null);
-    }, 500);
-  };
-
+// src/App.jsx
+export default function App() {
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-gray-900 to-black px-2 sm:px-4">
-      {/* Header */}
-      <div className="w-full h-[10vh] flex flex-col justify-center gap-1 text-white pt-4">
-        <div className="flex items-center gap-2 ml-3 sm:ml-6">
-          <h1 className="text-2xl sm:text-3xl font-bold">{user.name},</h1>
-          <p className="text-2xl sm:text-3xl">{user.age}</p>
+    <main className="page">
+      <section className="hero">
+        <div className="wrap">
+          <div className="left">
+            <div className="pill">
+              <span className="dot" />
+              Trusted since 2006
+            </div>
+
+            <h1 className="h1">
+              Building spaces that shape the future
+            </h1>
+
+            <p className="lead">
+              Residential, commercial and infrastructure projects across Odisha with quality, timelines and integrity at the core. [web:12]
+            </p>
+
+            <div className="ctaRow">
+              <a className="btn primary" href="#projects">Explore projects</a>
+              <a className="btn outline" href="#contact">Get a quote</a>
+            </div>
+
+            <ul className="stats">
+              <li>
+                <span className="n">18+</span>
+                <span className="l">Years</span>
+              </li>
+              <li>
+                <span className="n">120+</span>
+                <span className="l">Projects</span>
+              </li>
+              <li>
+                <span className="n">12+</span>
+                <span className="l">Cities</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="right">
+            <div className="card">
+              <img
+                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop"
+                alt="Construction skyline"
+                className="photo"
+                loading="eager"
+              />
+              <div className="glow" />
+            </div>
+          </div>
         </div>
-        <div>
-          <span className="flex items-center ml-3 sm:ml-6 text-sm sm:text-base">
-            <MapPin className="mr-1" /> {user.live}
-          </span>
-        </div>
-      </div>
+      </section>
 
-      {/* Animated Image Container */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={userIndex}
-          className="relative flex items-center justify-center w-full max-w-md mt-4 mb-4 rounded-2xl overflow-hidden"
-          initial={{ opacity: 0, rotate: 0, x: 0 }}
-          animate={{
-            opacity: 1,
-            rotate: action === "like" ? 10 : action === "dislike" ? -10 : 0,
-            x: action === "like" ? 200 : action === "dislike" ? -200 : 0,
-          }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.4 }}
-          style={{ height: "75vh" }}
-        >
-          <motion.div
-            className={`absolute h-[97%] w-[97%] rounded-2xl z-[3] transition-all duration-300
-              ${action === "like" ? "bg-green-400/10 backdrop-blur-md" : ""}
-              ${action === "dislike" ? "bg-red-400/10 backdrop-blur-md" : ""}`}
-          />
-          <motion.img
-            src={user.image}
-            className="h-[97%] w-[97%] object-cover rounded-xl shadow-lg"
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-          <span className="absolute text-white left-4 bottom-4 text-base sm:text-lg bg-black bg-opacity-40 px-3 py-1 rounded-lg">
-            {user.hobby}
-          </span>
-        </motion.div>
-      </AnimatePresence>
+      <style>{`
+        :root{
+          --bg:#0b0f14;
+          --ink:#e9eef6;
+          --muted:#9fb1c9;
+          --card:#121922;
+          --border:#203246;
+          --accent:#f2b11b;
+          --ring:#2b4660;
+        }
+        *{box-sizing:border-box}
+        html,body,#root{height:100%}
+        body{
+          margin:0;
+          background:
+            radial-gradient(1000px 500px at 75% -10%, #152131 0%, transparent 60%),
+            linear-gradient(180deg, #0b0f14 0%, #070a0e 100%);
+          color:var(--ink);
+          font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        }
+        a{text-decoration:none;color:inherit}
 
-      {/* Action Buttons */}
-      <div className="flex items-center justify-center gap-6 sm:gap-10 h-[7vh] w-full">
-        <motion.div
-          className="h-20 w-20 rounded-full bg-[#E74748] flex items-center justify-center shadow-lg cursor-pointer"
-          whileTap={{ scale: 0.85 }}
-          onClick={handleCrossClick}
-        >
-          <ImCross className="text-black-500 text-[32px] sm:text-3xl" />
-        </motion.div>
+        .hero{
+          position:relative;
+          min-height:100svh;
+          display:grid;
+          align-items:center;
+          padding: clamp(20px,4vw,40px) 0;
+        }
+        .wrap{
+          width:min(1200px,92vw);
+          margin:0 auto;
+          display:grid;
+          grid-template-columns: 1.05fr 1fr;
+          gap: clamp(16px,3vw,36px);
+        }
+        .left{
+          align-self:center;
+          animation:fadeIn .6s ease-out both;
+        }
+        .pill{
+          display:inline-flex;
+          align-items:center;
+          gap:10px;
+          color:var(--muted);
+          background:linear-gradient(180deg,#152131,#0f1722);
+          border:1px solid #223347;
+          padding:8px 12px;
+          border-radius:999px;
+          font-weight:600;
+          box-shadow:0 0 0 4px rgba(43,70,96,.35) inset;
+        }
+        .dot{width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #ffe9a6, var(--accent));box-shadow:0 0 0 4px rgba(242,177,27,.25)}
+        .h1{
+          margin:14px 0 6px;
+          font-size: clamp(32px,4.6vw,56px);
+          line-height:1.05;
+          letter-spacing:-.02em;
+          text-wrap:balance;
+          text-shadow:0 8px 40px rgba(0,0,0,.45);
+        }
+        .lead{
+          margin:10px 0 22px;
+          color:var(--muted);
+          font-size: clamp(16px,1.8vw,18px);
+          max-width: 54ch;
+        }
+        .ctaRow{display:flex;gap:12px;margin:20px 0 26px}
+        .btn{
+          display:inline-flex;align-items:center;justify-content:center;
+          height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;
+          font-weight:700;letter-spacing:.2px;transition:transform .2s ease, filter .2s ease, background .2s ease, border-color .2s ease;
+        }
+        .btn:hover{transform:translateY(-1px)}
+        .primary{
+          background:linear-gradient(180deg,#ffd15c,var(--accent));
+          color:#1a1300; text-shadow:0 1px 0 rgba(255,255,255,.25);
+          box-shadow:0 8px 30px rgba(242,177,27,.28);
+        }
+        .primary:hover{filter:brightness(1.04)}
+        .outline{
+          background:transparent;border-color:#2a3c52;color:var(--ink)
+        }
+        .outline:hover{background:rgba(42,60,82,.18)}
+        .stats{
+          list-style:none;margin:16px 0 0;padding:0;
+          display:grid;grid-auto-flow:column;gap: clamp(12px,2.2vw,24px);
+        }
+        .stats li{
+          background:linear-gradient(180deg,#101821,#0c121a);
+          border:1px solid #1f2c3c;border-radius:14px;padding:12px 14px;min-width:110px;
+          box-shadow:0 10px 40px rgba(0,0,0,.25);
+          transition:transform .3s ease,border-color .3s ease;
+        }
+        .stats li:hover{transform:translateY(-2px);border-color:var(--ring)}
+        .n{
+          display:block;font-size: clamp(22px,2.8vw,30px);font-weight:800;letter-spacing:-.02em;
+          background:linear-gradient(180deg,#fff,#cfe3ff);-webkit-background-clip:text;background-clip:text;color:transparent;
+        }
+        .l{display:block;color:var(--muted);font-size:13px;margin-top:2px}
 
-        <motion.div
-          className="h-20 w-20 rounded-full bg-[#01AB3F] flex items-center justify-center shadow-lg cursor-pointer"
-          whileTap={{ scale: 0.85 }}
-          onClick={handleHeartClick}
-        >
-          <FaHeart className="text-red-500 text-[36px] sm:text-3xl" />
-        </motion.div>
+        .right{display:grid;align-items:end}
+        .card{
+          position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
+          border:1px solid var(--border);
+          background:linear-gradient(180deg,#0d141c,#0a0f15);
+          box-shadow:0 20px 60px rgba(0,0,0,.45), 0 0 0 6px rgba(39,64,86,.22) inset;
+          transform:translateY(14px) scale(.985);opacity:.001;
+          animation:pop .7s .1s cubic-bezier(.2,.8,.2,1) forwards;
+        }
+        .photo{width:100%;height:100%;object-fit:cover;filter:contrast(1.02) saturate(1.04)}
+        .glow{
+          position:absolute;inset:auto -20% -14% -20%;height:52%;
+          background:
+            radial-gradient(45% 60% at 50% 0%, rgba(101,195,255,.26), transparent 70%),
+            radial-gradient(60% 70% at 50% 20%, rgba(255,209,92,.20), transparent 80%);
+          filter:blur(22px);pointer-events:none;mix-blend-mode:screen;
+        }
 
-        <motion.div
-          className="h-20 w-20 rounded-full bg-[#1D8CF2] flex items-center justify-center shadow-lg"
-          whileTap={{ scale: 0.9 }}
-        >
-          <FaStar className="text-yellow-300 text-[36px] sm:text-3xl" />
-        </motion.div>
-      </div>
-    </div>
+        @keyframes pop{to{transform:translateY(0) scale(1);opacity:1}}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+        @media (max-width: 980px){
+          .wrap{grid-template-columns:1fr;gap:22px}
+          .stats{grid-auto-flow:row;grid-template-columns:repeat(3,1fr)}
+        }
+        @media (prefers-reduced-motion: reduce){
+          .left,.card{animation:none !important;transform:none !important;opacity:1 !important}
+        }
+      `}</style>
+    </main>
   );
-};
-export default Navbar;
+}
